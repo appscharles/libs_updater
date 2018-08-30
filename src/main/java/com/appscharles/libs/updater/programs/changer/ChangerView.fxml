@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <Label text="%view.update_files" />
+      <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" />
+      <Label fx:id="filePath" text="E:\directory\updater\sub_directory\short_name\sub_folder\sub_folder\sub_folder\sub_folder\sub_folder\file_one.jar" textOverrun="CENTER_WORD_ELLIPSIS" />
+   </children>
+</VBox>

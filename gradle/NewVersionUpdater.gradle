@@ -1,0 +1,73 @@
+/****************************************************************************
+ ***************************** IMPLEMENTATION *******************************
+ 1. Add classpath to `build.gradle`
+
+ buildscript {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/appscharles/libs'
+        }
+        maven {
+            url 'http://repo.novus.com/releases'
+        }
+    }
+    dependencies {
+        classpath 'com.appscharles.libs:updater:1.+'
+    }
+ }
+
+ 2. Apply plugin in `build.gradle`
+
+ apply plugin: 'com.appscharles.libs.updater'
+
+ 3. Configuration Updater in below defined 'updaterConfig'
+
+ 4. Information of configuration updater data file:
+
+ 1 line in file: FTP host
+ 2 line in file: FTP name
+ 3 line in file: FTP password
+
+ 5. Send new version by task 'newVersionSendToDisk' or 'newVersionSendToFTP'
+ ****************************************************************************/
+// Configuration
+def updaterConfig = [
+        dataFile: System.getProperty("user.home") + "/updater/data.txt",
+
+        // for send to disk
+        fromDir: "${project.projectDir}/gradle",
+        storageDir: "E:/",
+
+        // additionally for send to disk
+        ftp_port: 21,
+        ftp_storageDir: "/files",
+        ftp_passiveMode: true
+]
+
+// Business Updater
+String[] updaterData = new String[3];
+if (new File(updaterConfig.dataFile).exists()){
+    updaterData = java.nio.file.Files.lines(java.nio.file.Paths.get(updaterConfig.dataFile)).toArray()
+}
+
+newVersionUpdater {
+    fromDir = updaterConfig.fromDir
+    storageDir = updaterConfig.storageDir
+    hostFTP = updaterData[0]
+    portFTP = updaterConfig.ftp_port
+    nameFTP = updaterData[1]
+    passwordFTP = updaterData[2]
+    passiveModeFTP = updaterConfig.ftp_passiveMode
+}
+
+configurations.all {
+    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+configure(newVersionSendToDisk) {
+    group = 'project'
+}
+
+configure(newVersionSendToFTP) {
+    group = 'project'
+}
