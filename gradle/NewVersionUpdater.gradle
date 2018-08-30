@@ -33,14 +33,9 @@
 // Configuration
 def updaterConfig = [
         dataFile: System.getProperty("user.home") + "/updater/data.txt",
-
-        // for send to disk
         fromDir: "${project.projectDir}/gradle",
-        storageDir: "E:/",
-
-        // additionally for send to disk
+        storageDir: "E:/", // or /ftp_directory
         ftp_port: 21,
-        ftp_storageDir: "/files",
         ftp_passiveMode: true
 ]
 
