@@ -52,4 +52,17 @@ public class NewVersionSenderTest {
         ftpServer.stop();
         Assert.assertEquals(DirReader.getFiles(rootDir).size(), DirReader.getFiles(ftpDir).size() - 6);
     }
+
+//    @Test
+//    public void shouldSendFilesToFTPServer2() throws IOException, FtpException, GeneratorException, UpdaterException {
+//        File rootDir = this.temp.newFolder();
+//        IGenerator generator = new TreeFilesGenerator(rootDir.getPath(), 12, 12, 3, 3);
+//        generator.random();
+//        File dataFile = new File(System.getProperty("user.home") + "/appscharles/apps/stocker/_project/updater.txt");
+//        String[] data = FileReader.read(dataFile).split(System.lineSeparator());
+//        NewVersionSender.sendToFTP("MyApp", "1.0.0.0-dev1", rootDir, data[0], 21, data[1], data[2], "/appscharles", true);
+//     }
+
+
+
 }
